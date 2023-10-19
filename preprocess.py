@@ -32,14 +32,15 @@ def remove_stop_words_and_lammatize(sentence):
     return new_sentence
 
 def remove_special_chars(sentence):
-    return re.sub(r'/([^ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی ]+)/ig', "", sentence[::-1])
+    return re.sub(r"([^ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی ]+)", "", sentence)
 
 def normalize(sentence):
     normalizer = Normalizer()
     return normalizer.normalize(sentence)
 
 def clean_up_pipeline(text):
-    cleaning_utils = [to_lower,
+    cleaning_utils = [remove_special_chars,
+                      to_lower,
                       remove_hyperlink,
                       replace_newline,
                       remove_number,
@@ -47,7 +48,7 @@ def clean_up_pipeline(text):
                       remove_whitespace,
                       normalize,
                       remove_stop_words_and_lammatize,
-                      remove_special_chars
+                      
                      ]
     for o in cleaning_utils:
         text = o(text)
