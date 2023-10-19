@@ -24,8 +24,8 @@ def replace_newline(sentence):
     return sentence.replace('\n','')
 
 def remove_stop_words_and_lammatize(sentence):
-    stemmer = Stemmer()
-    sentence = stemmer.stem(sentence)
+    # stemmer = Stemmer()
+    # sentence = stemmer.stem(sentence)
     lemmatizer = Lemmatizer()
     stop_words = stopwords_list()
     tokens = word_tokenize(sentence)
